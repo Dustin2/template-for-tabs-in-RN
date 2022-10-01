@@ -8,7 +8,7 @@ import { StatusBar } from "expo-status-bar";
 import HomeScreen from "../Screens/HomeScreen";
 import ProductsScreen from "../Screens/ProductsScreen";
 import StackScreen from "../Screens/StackScreen";
-
+import DealilsStore from "../Screens/DealilsStore";
 //icons
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -52,6 +52,23 @@ function Tabs() {
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="inventory" size={24} color={color} />
           ),
+          headerStyle: {
+            backgroundColor: "red",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      
+      <Tab.Screen
+        name="DealilsStore"
+        component={DealilsStore}
+        options={{
+          tabBarLabel: "Detalle de tienda",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="details" size={24} color={color} /> ),
           headerStyle: {
             backgroundColor: "red",
           },

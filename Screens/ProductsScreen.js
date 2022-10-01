@@ -10,18 +10,7 @@ const ProductsScreen = () => {
         <TextInput placeholder="clave SAT" editable={false} />
         <TextInput placeholder="" style={styles.inputGroup} />
       </View>
-      <View>
-        <TextInput placeholder="Cantidad" editable={false} />
-        <TextInput style={styles.inputGroup} />
-      </View>
-      <View>
-        <TextInput placeholder="Nombre" editable={false} />
-        <TextInput style={styles.inputGroup} />
-      </View>
-      <View>
-        <TextInput placeholder="Precio" editable={false} />
-        <TextInput style={styles.inputGroup} />
-      </View>
+      
     </ScrollView>
   );
 };
