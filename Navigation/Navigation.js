@@ -8,9 +8,11 @@ import { Colors } from "../colors";
 import HomeScreen from "../Screens/HomeScreen";
 import HubScreen from "../Screens/HubScreen";
 import CaptureScreen from "../Screens/CaptureScreen";
+import LocationsScreen from "../Screens/LocationsScreen";
 //icons
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import LoginScreen from "../Screens/LoginScreen";
 
 ///create in someone const we function for use button tab navigation
 const Tab = createBottomTabNavigator();
@@ -28,8 +30,8 @@ function Tabs() {
         //get prop for change options, props need or work name and component
       }
       <Tab.Screen
-        name="Inicio"
-        component={HomeScreen}
+        name="Login"
+        component={LoginScreen}
         options={{
           tabBarLabel: "Inicio",
           tabBarIcon: ({ color, size }) => (
@@ -79,7 +81,21 @@ function Tabs() {
         }}
       />
 
-      
+<Tab.Screen
+        name="Ubicaciones"
+        component={LocationsScreen}
+        options={{
+          tabBarLabel: "Ubicaciones",
+          tabBarIcon: ({ color, size }) => (
+<MaterialIcons name="location-on" size={24} color={color} />          ),
+          headerStyle: {
+            backgroundColor: Colors.secondary,
+          },
+          headerTintColor: Colors.primary,
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }} />
     </Tab.Navigator>
   );
 }

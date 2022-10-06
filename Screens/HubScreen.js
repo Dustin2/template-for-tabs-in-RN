@@ -1,5 +1,5 @@
 import react, { useState, useRef } from "react";
-import { View, StyleSheet, ScrollView,Button } from "react-native";
+import { View, StyleSheet, ScrollView,Button,Text } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
 
@@ -20,29 +20,18 @@ const HubScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <View>
-        <Picker
-          ref={pickerRef}
-          selectedValue={store}
-          onValueChange={(itemValue, itemIndex) => setStore(itemValue)}
-        >
-          <Picker.Item label="Selecciona la tienda" value="" enabled={false} />
-          <Picker.Item label="Chapala" value="Chapala" />
-          <Picker.Item label="Circunvalacion" value="Circunvalacion" />
-          <Picker.Item label="Juarez" value="Juarez" />
-          <Picker.Item label="Santa Fe" value="Santa Fe" />
-          <Picker.Item label="Isla" value="Isla" />
-        </Picker>
+     <Text style={styles.textInput}>Bienvenido Chapala</Text>
       </View>
-      <View >
+      <View   style={styles.inputGroup}>
         <Button title="Ubicaciones" styles={{ marginBottom: 10}} />
       </View>
-      <View>
-        <Button title="Captura" styles={styles.button} />
+      <View  style={styles.inputGroup}>
+        <Button title="Captura" styles={{  marginBottom: 10}}  />
       </View>
-      <View >
+      <View  style={styles.inputGroup} >
         <Button title="Cambios" styles={styles.button} />
       </View>
-      <View >
+      <View  style={styles.inputGroup} >
         <Button title="Configuracion" styles={styles.button} />
       </View>
     </ScrollView>
@@ -70,7 +59,12 @@ const styles = StyleSheet.create({
       },
     button: {
         marginBottom: 10,
-    }
+    }, 
+    textInput: {
+        flex: 1,
+        fontSize: 50,
+       textAlign: 'center',
+    },
 });
 
 export default HubScreen;

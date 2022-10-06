@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button, ScrollView,Alert,ToastAndroid} from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  ScrollView,
+  Alert,
+  ToastAndroid,
+} from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { TextInput } from "react-native-paper";
 
 export default function CaptureScreen() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState("Not yet scanned");
+  const [text, setText] = useState([]);
   const [position, setPosition] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -26,7 +34,9 @@ export default function CaptureScreen() {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     setText(data);
+    setProducts(data);
     console.log("Type: " + type + "\nData: " + data);
+    console.log("dsads"+products)
   };
 
   // Check permissions and return the screens
@@ -68,34 +78,13 @@ export default function CaptureScreen() {
           //sendData(),
 
           ToastAndroid.show("Acta registrada con exito!", ToastAndroid.SHORT)
-          ,products.forEach(product =>console.log(product))
+        
         ),
         style: "success",
       },
     ]);
   };
 
-    ///sendData to firebase
-    const sendData = async () => {
-        await addDoc(collection(database, 'actas'), {
-          name: user.name,
-          colony: user.colony,
-          date: user.date,
-          typeVehicle: user.typeVehicle,
-          plaque: user.plaque,
-          color: user.color,
-          description: user.description,
-          // createdDoc: servnewerTimestamp(),
-          createdDoc: new Date(),
-        });
-        setUsers(initialState);
-    
-        ///use this change screen after save data
-        // props.navigation.navigate('Actas Recientes');
-    
-        ///serverTimestamp is used for save date to create document with firebase
-      };
-      /// sendData
 
 
   // Return the View
@@ -108,29 +97,47 @@ export default function CaptureScreen() {
             style={{ height: 400, width: 400 }}
           />
         </View>
-
+{/* 
         <Button
           title={"scan again"}
           onPress={() => setScanned(false)}
           color="red"
-        />
-        <Button title="save" onPress={() => {saveProducts();}} color="green" />
+        /> */}
+       
       </View>
       <View>
         <TextInput
-        value={products.text}
+          value={products.text}
           editable={false}
-          label={text}
+          label={"Nombre del Articulo"+text}
           onChangeText={(value) => {
             handleChangeText("text", value);
           }}
+          multiline={true}
+        />
+        <TextInput
+          value={products.text}
+          editable={false}
+          label={"Codigo del Articulo"+text}
+          onChangeText={(value) => {
+            handleChangeText("text", value);
+          }}
+          multiline={true}
+          
+        />
+         <Button
+          title="Guardar"
+          onPress={() => {
+            saveProducts();
+          }}
+          color="green"
         />
       </View>
       <View>
-        <TextInput label="numbers of furniture" />
-      </View>
-      <View>
-        <TextInput label="store" />
+        <Text style={styles.textInput}>Datos de la Ubicacion</Text>
+        <TextInput label={"Nombre : Chapala"}  editable={false}/>
+        <TextInput label={"Tipo de Ubicacion : Pared"}  editable={false}/>
+        <TextInput label={"Espacios Disponibles : 4"}  editable={false}/>
       </View>
     </ScrollView>
   );
@@ -155,5 +162,11 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderRadius: 30,
     backgroundColor: "tomato",
+  },
+  textInput: {
+    flex: 1,
+    fontSize: 20,
+    color: "black",
+    textAlign: "center",
   },
 });

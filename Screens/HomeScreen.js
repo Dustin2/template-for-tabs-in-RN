@@ -103,10 +103,10 @@ export default function Home() {
     <ScrollView>
       
       <View>
-        <TextInput label="numbers of furniture" />
+        <TextInput label="Correo " />
       </View>
       <View>
-        <TextInput label="store" />
+        <TextInput label="Contraseña" />
       </View>
     </ScrollView>
   );
