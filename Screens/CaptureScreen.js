@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button, ScrollView,Alert,ToastAndroid} from "re
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { TextInput } from "react-native-paper";
 
-export default function Home() {
+export default function CaptureScreen() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("Not yet scanned");
@@ -101,7 +101,31 @@ export default function Home() {
   // Return the View
   return (
     <ScrollView>
-      
+      <View style={styles.container}>
+        <View style={styles.barcodebox}>
+          <BarCodeScanner
+            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+            style={{ height: 400, width: 400 }}
+          />
+        </View>
+
+        <Button
+          title={"scan again"}
+          onPress={() => setScanned(false)}
+          color="red"
+        />
+        <Button title="save" onPress={() => {saveProducts();}} color="green" />
+      </View>
+      <View>
+        <TextInput
+        value={products.text}
+          editable={false}
+          label={text}
+          onChangeText={(value) => {
+            handleChangeText("text", value);
+          }}
+        />
+      </View>
       <View>
         <TextInput label="numbers of furniture" />
       </View>

@@ -3,14 +3,14 @@ import react, { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
-
+import { Colors } from "../colors";
 //screens
 import HomeScreen from "../Screens/HomeScreen";
-import ProductsScreen from "../Screens/ProductsScreen";
-import StackScreen from "../Screens/StackScreen";
-import DealilsStore from "../Screens/DealilsStore";
+import HubScreen from "../Screens/HubScreen";
+import CaptureScreen from "../Screens/CaptureScreen";
 //icons
 import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 ///create in someone const we function for use button tab navigation
 const Tab = createBottomTabNavigator();
@@ -21,14 +21,14 @@ function Tabs() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: "red",
+        tabBarActiveTintColor: Colors.primary,
       }}
     >
       {
         //get prop for change options, props need or work name and component
       }
       <Tab.Screen
-        name="Home"
+        name="Inicio"
         component={HomeScreen}
         options={{
           tabBarLabel: "Inicio",
@@ -36,48 +36,50 @@ function Tabs() {
             <MaterialIcons name="home" size={24} color={color} />
           ),
           headerStyle: {
-            backgroundColor: "red",
+            backgroundColor: Colors.secondary,
           },
-          headerTintColor: "#fff",
+          headerTintColor: Colors.primary,
           headerTitleStyle: {
             fontWeight: "bold",
           },
         }}
       />
       <Tab.Screen
-        name="Products"
-        component={ProductsScreen}
+        name="Hub"
+        component={HubScreen}
         options={{
-          tabBarLabel: "Inventario",
+          tabBarLabel: "Hub",
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="inventory" size={24} color={color} />
           ),
           headerStyle: {
-            backgroundColor: "red",
+            backgroundColor: Colors.secondary,
           },
-          headerTintColor: "#fff",
+          headerTintColor: Colors.primary,
           headerTitleStyle: {
             fontWeight: "bold",
           },
         }}
       />
-      
       <Tab.Screen
-        name="DealilsStore"
-        component={DealilsStore}
+        name="Captura de datos"
+        component={CaptureScreen}
         options={{
-          tabBarLabel: "Detalle de tienda",
+          tabBarLabel: "Captura de datos",
           tabBarIcon: ({ color, size }) => (
-            <MaterialIcons name="details" size={24} color={color} /> ),
+            <MaterialCommunityIcons name="barcode-scan" size={24} color={color} />
+          ),
           headerStyle: {
-            backgroundColor: "red",
+            backgroundColor: Colors.secondary,
           },
-          headerTintColor: "#fff",
+          headerTintColor: Colors.primary,
           headerTitleStyle: {
             fontWeight: "bold",
           },
         }}
       />
+
+      
     </Tab.Navigator>
   );
 }
@@ -87,6 +89,7 @@ export default function navigation() {
   return (
     <NavigationContainer>
       <Tabs />
+      <StatusBar style="light" />
     </NavigationContainer>
   );
 }
